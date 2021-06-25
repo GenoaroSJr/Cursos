@@ -3,8 +3,8 @@
 console.log(7/0) // retorna o tipo "Infinity"
 console.log("10"/2) // ele de fato divide 10 por 2
 console.log("10" + 2) // Ele faz a concatenação por + faz sentido para strings
-console.log("10" - 2) // ele subtrai pois não há sentido - no mundo das strings
-console.log("10.2"/2) // ele de fato divide 10 por 2
+console.log("10" - 2) // ele subtrai pois não há sentido - no mundo das strings ... resp: NaN
+console.log("10.2"/2) // ele de fato divide 10 por 2 ... resp: NaN
 /* no caso ele confere se é possível dividir o valor
 * entre " " e, se possível, faz a divisão
 */
