@@ -2,10 +2,19 @@
 
 const peso1 = 1.0
 const peso2 = Number('2.0')
+console.log("Number is a: " + typeof Number)
+
+// number -> c/ letra minuscula é o tipo
+// Number -> c/ letra maiscula é a função.
 
 console.log(peso1, peso2)
-console.log(Number.isInteger(peso1))
+console.log(Number.isInteger(peso1)) 
 console.log(Number.isInteger(peso2))
+//console.log((peso2).isInteger()) 
+/* Ele busca 'isInteger() da função Number
+* dess forma torna-se possível converter 
+* o valores em inteiros
+*/
 
 const avaliacao1 = 9.871
 const avaliacao2 = 6.871
@@ -26,6 +35,3 @@ console.log(media.toString(2)) //acrescenta o 2
 */
 
 console.log(typeof media) // ainda é definido como number
-
-// number -> c/ letra minuscula é o tipo
-// Number -> c/ letra maiscula é a função.

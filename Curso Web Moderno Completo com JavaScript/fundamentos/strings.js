@@ -26,4 +26,4 @@ console.log(escola.replace(/\d/, 'e')) // operações em Regex;
 */
 
 console.log('Ana,Maria,Pedro'.split(',')) // Convertendo em array;
-
+//console.log('10+20-20/50'.split('+' | '-' | '/')) testando;
