@@ -22,8 +22,8 @@ class Titular
             echo PHP_EOL."Nome inválido!";
     }
 
-    public function getCpf(): string { return $this->cpf; }
+    public function getCpf() { return $this->cpf; }
 
-    public function getNome(): string { return $this->nome; }
+    public function getNome() { return $this->nome; }
 
 }
