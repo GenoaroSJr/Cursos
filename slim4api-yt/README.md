@@ -20,7 +20,6 @@ php -S localhost:8080 -t public public/index.php
 # Start migration
 ~Coming Soon
 
-
 # See the project
 http://localhost:8080
 ```
