@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    
+</head>
+<body>
+    <div id="app">
+        <h1>{{titulo}}</h1>
+        <ul v-for="info in infos">
+            <li>
+                <h3>{{info.code}}</h3>
+                <ul>
+                    <li>Descricao: {{info.description}}</li>
+                    <li>Simbolo: <strong v-html="info.symbol">{{info.symbol}}</strong></li>
+                    <li>Valor: {{info.rate}}</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+        
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                titulo: "Preço do Bitcoin",
+                infos: []
+            },
+            mounted(){
+                axios
+                .get("https://api.coindesk.com/v1/bpi/currentprice.json")
+                .then(response => (this.infos = response.data.bpi))
+            }
+        });
+    </script>
+</body>
+</html>

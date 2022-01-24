@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olá, Vue.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{ verifica ? listas[0].nome : mensagem }}</h1>
+        <h1 v-else>Outra mensagema aqui</h1>
+        <h1 v-if="verifica">{{ mensagem }}</h1>
+        <hr>
+        <h1 v-if="numero > 4">Numero é maior que 4</h1>
+        <h1 v-else>Número é diferente de 4: {{numero}}</h1>
+        <hr>
+        <p>Digite algo para ser exibido</p>
+        <input type="text" v-model="conteudo" placeholder="Digite algo:">
+        <p>{{ conteudo }}</p>
+
+        <hr>
+        <p>Digite algo para ser exibido 2</p>
+        <input type="text" v-model="conteudo" placeholder="Digite algo:">
+        <p v-if="conteudo == 'Genoaro'">{{ conteudo }} Soares Junior</p>
+        <p v-else>{{ conteudo }}</p>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                mensagem: "Olá, Vue.js! Meu olá mundo!",
+                titulo: "Eiusmod magna labore id excepteur in magna non Lorem sit.",
+                listas: [
+                    {
+                        id: 1,
+                        nome: "Genoaro S Jr",
+                        idioma: "pt-br"
+                    },
+                    {
+                        id: 2,
+                        nome: "Genoaro S Jr 2",
+                        idioma: "pt-br 2"
+                    },
+                    {
+                        id: 3,
+                        nome: "Genoaro S Jr 3",
+                        idioma: "pt-br 3"
+                    }
+                ],
+                verifica: true,
+                numero: 4,
+                conteudo: "nada"
+            }
+        });
+    </script>
+</body>
+
+</html>
