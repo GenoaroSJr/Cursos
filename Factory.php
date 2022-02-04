@@ -11,40 +11,40 @@ interface Conta
 /** as contas implementadas */
 class Bradesco implements Conta
 {
-    private $CONTA_NAME;
+    private $NOME_USER;
     private $TAXA_JUROS;
 
-    public function __construct(String $contaNameDefine, String $taxaJuros)
+    public function __construct(String $defineNomeUser, String $taxaJuros)
     {
-        $this->CONTA_NAME = $contaNameDefine;
+        $this->NOME_USER = $defineNomeUser;
         $this->TAXA_JUROS = $taxaJuros;
     }
 
     public function getContaName(): String
     {
-        return "Bradesco " . $this->CONTA_NAME . PHP_EOL;
+        return "Bradesco " . $this->NOME_USER . PHP_EOL;
     }
 
     public function getTaxaJuros(): String
     {
-        return "Itau juros: " . $this->TAXA_JUROS . PHP_EOL;
+        return "Bradesco juros: " . $this->TAXA_JUROS . PHP_EOL;
     }
 }
 
 class Itau implements Conta
 {
-    private $CONTA_NAME;
+    private $NOME_USER;
     private $TAXA_JUROS;
 
-    public function __construct(String $contaNameDefine, String $taxaJuros)
+    public function __construct(String $defineNomeUser, String $taxaJuros)
     {
-        $this->CONTA_NAME = $contaNameDefine;
+        $this->NOME_USER = $defineNomeUser;
         $this->TAXA_JUROS = $taxaJuros;
     }
 
     public function getContaName(): String
     {
-        return "Itau " . $this->CONTA_NAME . PHP_EOL;
+        return "Itau " . $this->NOME_USER . PHP_EOL;
     }
 
     public function getTaxaJuros(): String
@@ -56,55 +56,59 @@ class Itau implements Conta
 /** aplicação da Factory Pattern */
 abstract class BancoFactory
 {
-    abstract public function ContaBanco(String $contaName): Conta;
+    /** É sobre o construtor da class Conta
+     * por exemplo, a class conta recebe $userName; 
+     */
+
+    abstract public function ContaBanco(String $userName): Conta;
 }
 
 class ItauFactory extends BancoFactory
 {
     private $TAXA_JUROS = "0.2";
-    public function ContaBanco($contaName): Conta
+    public function ContaBanco($userName): Conta
     {
-        return new Itau($contaName, $this->TAXA_JUROS);
+        return new Itau($userName, $this->TAXA_JUROS);
     }
 }
 
 class ItauFactoryEstudante extends BancoFactory
 {
     private $TAXA_JUROS = "0.1";
-    public function ContaBanco($contaName): Conta
+    public function ContaBanco($userName): Conta
     {
-        return new Itau($contaName, $this->TAXA_JUROS);
+        return new Itau($userName, $this->TAXA_JUROS);
     }
 }
 
 class BradescoFactoryEstudante extends BancoFactory
 {
-    private $TAXA_JUROS = "0.1";
-    public function ContaBanco($contaName): Conta
+    private $TAXA_JUROS = "0.15";
+    public function ContaBanco($userName): Conta
     {
-        return new Itau($contaName, $this->TAXA_JUROS);
+        return new Bradesco($userName, $this->TAXA_JUROS);
     }
 }
 
 /** Aplicação da Strategy Pattern */
 class ContextTipoConta
 {
-    private $CONTA;
-    private $CONTA_NAME;
-    public function __construct(BancoFactory $tipoConta, String $contaName)
+    private $TIPO_CONTA;
+    private $NOME_USER;
+    public function __construct(BancoFactory $tipoConta, String $userName)
     {
-        $this->CONTA = $tipoConta;
-        $this->CONTA_NAME = $contaName;
+        $this->TIPO_CONTA = $tipoConta;
+        $this->NOME_USER = $userName;
     }
 
     public function getContaName(): String
     {
-        return $this->CONTA->ContaBanco($this->CONTA_NAME)->getContaName();
+        return $this->TIPO_CONTA->ContaBanco($this->NOME_USER)->getContaName();
     }
 
     public function getTaxaJuros(): String
     {
-        return $this->CONTA->ContaBanco($this->CONTA_NAME)->getTaxaJuros();
+        return $this->TIPO_CONTA->ContaBanco($this->NOME_USER)->getTaxaJuros();
     }
 }
 
@@ -113,6 +117,10 @@ $contaBradesco = new ContextTipoConta(new ItauFactoryEstudante, "Genoaro");
 echo ($contaBradesco->getContaName());
 echo ($contaBradesco->getTaxaJuros());
 
-$contaBradesco = new ContextTipoConta(new ItauFactory, "Genoaro Não Estudante");
+$contaBradesco = new ContextTipoConta(new ItauFactory, "Genoaro");
+echo ($contaBradesco->getContaName());
+echo ($contaBradesco->getTaxaJuros());
+
+$contaBradesco = new ContextTipoConta(new BradescoFactoryEstudante, "Genoaro");
 echo ($contaBradesco->getContaName());
 echo ($contaBradesco->getTaxaJuros());
