@@ -1,0 +1,24 @@
+{
+    "name": "genoarosjr/crawlerronin",
+    "description": "Faz uma busca no site ronin e traz as informa\u0000\u0000es da conta",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Genoarosjr\\Crawlerronin\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "genoarosjr",
+            "email": "genoarojr@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/dom-crawler": "^6.0",
+        "guzzlehttp/guzzle": "^7.4",
+        "symfony/css-selector": "^6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
